@@ -55,7 +55,10 @@ if (projectDataEl && modal) {
   const company = modal.querySelector('[data-modal-company]');
   const tags = modal.querySelector('[data-modal-tags]');
 
-  const imageHtml = (image) => `<figure class="project-gallery__slide"><img class="project-gallery__image" src="${image.src}" alt="${image.alt}" loading="lazy" onerror="this.dataset.failed='true';this.setAttribute('aria-hidden','true')"><figcaption>${image.caption}</figcaption></figure>`;
+  const assetLink = document.querySelector('link[href$="assets/styles.css"]')?.getAttribute('href') || 'assets/styles.css';
+  const assetPrefix = assetLink.replace(/assets\/styles\.css$/, '');
+  const projectAsset = (src) => src.startsWith('/images/') ? `${assetPrefix}${src.slice(1)}` : src;
+  const imageHtml = (image) => `<figure class="project-gallery__slide"><img class="project-gallery__image" src="${projectAsset(image.src)}" alt="${image.alt}" loading="lazy" onerror="this.dataset.failed='true';this.setAttribute('aria-hidden','true')"><figcaption>${image.caption}</figcaption></figure>`;
 
   const setSlide = (index) => {
     const slides = viewport.querySelectorAll('.project-gallery__slide');
