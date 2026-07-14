@@ -12,6 +12,7 @@ const files = [
   'upgrade-pages.css',
   'responsive-polish.css',
   'hero-showcase.css',
+  'logo-fix.css',
   'upgrade.js',
   'shell.js',
   'page-tools.js',
